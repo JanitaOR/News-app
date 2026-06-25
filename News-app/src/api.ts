@@ -19,6 +19,24 @@ export async function getNews(): Promise<NewsCategorys[]> {
   }
 }
 
+export async function getNewsCategorys(): Promise<NewsCategorys[]> {
+  try {
+    const respones: Response = await fetch(
+      "https://ok.surf/api/v1/cors/news-section-names",
+    );
+
+    if (!respones.ok) {
+      throw new Error("Did not find data" + respones.status);
+    }
+    const data: NewsCategorys[] = await respones.json();
+
+    return data;
+  } catch (error) {
+    console.log("something vent wrong", error);
+    throw error;
+  }
+}
+
 export async function postNews(newNews: NewsCategorys): Promise<NewsCategorys> {
   try {
     const response: Response = await fetch(

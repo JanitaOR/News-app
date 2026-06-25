@@ -1,5 +1,5 @@
 import "./style.css";
-import { getNews, postNews } from "./api";
+import { getNews, postNews, getNewsCategorys } from "./api";
 import type { News, NewsCategorys, NewCategoryType } from "./type";
 
 let app = document.getElementById("app") as HTMLDivElement;
@@ -204,9 +204,13 @@ ikke GET, og du må endre løsningen din deretter.
 
 /* ----------- code til 1.3 ------------ */
 
-const newsCategory = await postNews();
+const newsCategory = await getNewsCategorys();
 
 console.log(newsCategory);
+
+newsCategory.forEach((btnText) => {
+  btnContainer.innerHTML += `<button id="${btnText}">${btnText}</button>`;
+});
 
 /* ---------------------- */
 
