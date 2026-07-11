@@ -19,3 +19,8 @@ export type NewsCategorys = {
 
 export type Categorys = {};
 export type NewCategoryType = keyof NewsCategorys;
+
+export type NewSectionRequest = {
+  //sections: string[];
+  [key: string]: News[];
+};

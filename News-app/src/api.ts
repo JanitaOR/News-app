@@ -1,5 +1,5 @@
 //https://ok.surf/api/v1/cors/news-feed
-import { type News, type NewsCategorys } from "./type";
+import { type News, type NewsCategorys, type NewSectionRequest } from "./type";
 
 export async function getNews(): Promise<NewsCategorys[]> {
   try {
@@ -38,11 +38,13 @@ export async function getNewsCategorys(): Promise<NewsCategorys[]> {
 }
 
 export async function postNews(
-  newsCateory: NewsCategorys,
-): Promise<NewsCategorys> {
+  newsCateory: NewSectionRequest,
+): Promise<NewSectionRequest> {
   try {
+    console.log(typeof newsCateory);
+    console.log(JSON.stringify(newsCateory));
     const response: Response = await fetch(
-      "https://ok.surf/api/v1/cors/news-section-names",
+      "https://ok.surf/api/v1/cors/news-section",
       {
         method: "POST",
         headers: {
@@ -56,7 +58,8 @@ export async function postNews(
         `Det har oppstått en feil - feilmelding${response.status}`,
       );
     }
-    const data: NewsCategorys = await response.json();
+    const data: NewSectionRequest = await response.json();
+    console.log(data);
     return data;
   } catch (error) {
     console.log("noe gikk galt", error);
