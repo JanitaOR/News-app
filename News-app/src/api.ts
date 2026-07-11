@@ -37,7 +37,9 @@ export async function getNewsCategorys(): Promise<NewsCategorys[]> {
   }
 }
 
-export async function postNews(newNews: NewsCategorys): Promise<NewsCategorys> {
+export async function postNews(
+  newsCateory: NewsCategorys,
+): Promise<NewsCategorys> {
   try {
     const response: Response = await fetch(
       "https://ok.surf/api/v1/cors/news-section-names",
@@ -46,7 +48,7 @@ export async function postNews(newNews: NewsCategorys): Promise<NewsCategorys> {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newNews),
+        body: JSON.stringify(newsCateory),
       },
     );
     if (!response.ok) {
